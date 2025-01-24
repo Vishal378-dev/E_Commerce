@@ -1,0 +1,8 @@
+# make any changes to schema
+
+> npx prisma generate
+> docker exec -it vender_web_server npx prisma generate
+# Studio
+
+> npx prisma studio
+> sudo docker exec -it vender_web_server npx prisma studio
