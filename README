@@ -6,3 +6,13 @@
 
 > npx prisma studio
 > sudo docker exec -it vender_web_server npx prisma studio
+
+
+
+*******************************how to export data 
+make a db backup file in container
+docker exec -t 0e1cf47a87f2 pg_dump -U postgres -d vendor -f /tmp/backup.sql
+copy data from container to local m/c
+docker cp <container_name_or_id>:/tmp/backup.sql /path/to/local/backup.sql
+clean up
+docker exec <container_name_or_id> rm /tmp/backup.sql

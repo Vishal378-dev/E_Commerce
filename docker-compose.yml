@@ -1,33 +1,22 @@
 version: "3"
 
 services:
-
   pgDb:
     image: postgres:14.1-alpine
     restart: always
     ports:
-      - '5434:5434'
+      - '5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: vendor
-
-  backend:
-    container_name: vender_web_server
-    image: node:18.20.4
-    build: ./
-    volumes:
-      - "./:/app"
-      # - "./../packages:/packages" // dev mode
-    working_dir: /app
-    command: "npm run dev"
-    ports:
-      - "7000:7000"
-      - "5555:5555"
-    network_mode: "host"
-
+    networks:
+      - my-network  
 volumes:
   db:
     driver: local
+
+networks:
+  my-network:    
