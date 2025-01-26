@@ -14,27 +14,32 @@ datasource db {
 }
 
 model product {
-  id           Int            @id @default(autoincrement())
-  productId    String         @unique
-  isActive     Boolean
-  sellerId     String
-  asABrand     Boolean
-  categoryId   String
-  variants     Json
-  variantTypes variantTypes[]
+  id               String         @id @unique @default(uuid())
+  isActive         Boolean
+  sellerId         String
+  asABrand         Boolean
+  categoryId       String
+  variantAttribute Json
+  c_ts             DateTime       @default(now())
+  u_ts             DateTime       @updatedAt
+  variantTypes     variantTypes[]
 }
 
 model categoryId {
-  id  Int @id @default(autoincrement())
-  name String
+  id          Int      @id @default(autoincrement())
+  name        String
   subCategory String
+  c_ts        DateTime @default(now())
+  u_ts        DateTime @updatedAt
 }
 
 model variant {
-  id       Int    @id @default(autoincrement())
+  id       Int      @id @default(autoincrement())
   name     String
   value    Json
   sellerId String
+  c_ts     DateTime @default(now())
+  u_ts     DateTime @updatedAt
 }
 
 model variantTypes {
@@ -54,5 +59,7 @@ model variantTypes {
   specification Json
   variantName   String
   product       product? @relation(fields: [productId], references: [id])
-  productId     Int?
+  productId     String?
+  c_ts          DateTime @default(now())
+  u_ts          DateTime @updatedAt
 }
