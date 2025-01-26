@@ -8,7 +8,7 @@
     "build": "npx tsc",
     "dev": "nodemon index.ts",
     "watch": "nodemon start",
-    "start": "npm run build && node build/index.js"
+    "start": "npm run build && node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +26,9 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "helmet": "^8.0.0",
+    "joi": "^17.13.3",
     "nodemon": "^3.1.9",
-    "prisma": "^6.2.1"
+    "prisma": "^6.2.1",
+    "uuid": "^11.0.5"
   }
 }
