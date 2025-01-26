@@ -13,13 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-<<<<<<< Updated upstream
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String
-}
-=======
 model product {
   id           Int            @id @default(autoincrement())
   productId    String         @unique
@@ -63,4 +56,3 @@ model variantTypes {
   product       product? @relation(fields: [productId], references: [id])
   productId     Int?
 }
->>>>>>> Stashed changes
