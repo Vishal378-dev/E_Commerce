@@ -14,7 +14,45 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
+  id    Int    @id @default(autoincrement())
+  email String @unique
   name  String
+}
+
+model product {
+  id           Int            @id @default(autoincrement())
+  productId    String         @unique
+  isActive     Boolean
+  sellerId     String
+  asABrand     Boolean
+  categoryId   String
+  variants     Json
+  variantTypes variantTypes[]
+}
+
+model variant {
+  id       Int    @id @default(autoincrement())
+  name     String
+  value    Json
+  sellerId String
+}
+
+model variantTypes {
+  id            Int      @id @default(autoincrement())
+  variantId     String   @unique
+  name          String
+  description   String
+  price         Int
+  stock         Int
+  images        Json
+  video         String
+  wasPrice      Int
+  weight        Float
+  length        Float
+  height        Float
+  width         Float
+  specification Json
+  variantName   String
+  product       product? @relation(fields: [productId], references: [id])
+  productId     Int?
 }
