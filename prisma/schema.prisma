@@ -22,7 +22,7 @@ model product {
   variantAttribute Json
   c_ts             DateTime       @default(now())
   u_ts             DateTime       @updatedAt
-  variantTypes     variantTypes[]
+  variantTypes     variantTypes[] 
 }
 
 model categoryId {
@@ -43,7 +43,7 @@ model variant {
 }
 
 model variantTypes {
-  id            Int      @id @default(autoincrement())
+  id            String      @id @unique @default(uuid())
   variantId     String   @unique
   name          String
   description   String
